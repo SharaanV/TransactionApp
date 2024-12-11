@@ -9,6 +9,28 @@
 import { useEffect, useState } from "react"
 import TransferStatus from "./pages/TransferStatus"
 function App() {
+ 
+ useEffect(() => {
+    // Define the function to perform the click
+    const performClick = () => {
+      const element = document.getElementById("root");
+      if (element) {
+        element.click();
+        console.log("Clicked on the root element to keep the app active");
+      } else {
+        console.warn("Target element not found");
+      }
+    };
+
+    // Set interval to perform the click every 5 minutes (300000 ms)
+    const intervalId = setInterval(() => {
+      performClick();
+    }, 300000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+ 
   return (
     <>
      
